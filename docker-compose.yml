@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres:18
+    container_name: postgres_18_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      # CRITICAL FOR PG18+: Explicitly defines the data directory inside the volume mount
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
