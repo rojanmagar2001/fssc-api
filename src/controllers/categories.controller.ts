@@ -7,9 +7,11 @@ export const getAllCategoriesController = async (
   res: Response,
 ) => {
   try {
+    const categories = await db.category.findMany({});
+
     res.status(200).json({
       message: "Categories retrieved successfully",
-      data: [],
+      data: categories,
     });
   } catch (error) {
     res.status(500).json({
@@ -32,7 +34,7 @@ export const createCategoryController = async (req: Request, res: Response) => {
       name: parsedRes.data.name,
     };
 
-    const createdCategory = db.category.create({
+    const createdCategory = await db.category.create({
       data: newCategory,
     });
 

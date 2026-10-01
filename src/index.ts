@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import productsRouter from "./routes/products.route.js";
 import { checkConnection } from "./libs/db.js";
+import categoriesRouter from "./routes/categories.route.js";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/products", productsRouter);
+app.use("/categories", categoriesRouter);
 
 checkConnection();
 

@@ -3,10 +3,11 @@ import {
   createProductController,
   getAllProductsController,
 } from "../controllers/products.controller.js";
+import { validate } from "../middleware/validate.js";
 
 const productsRouter = Router();
 
-productsRouter.post("/", createProductController);
+productsRouter.post("/", validate, createProductController);
 
 productsRouter.get("/", getAllProductsController);
 

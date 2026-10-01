@@ -10,20 +10,12 @@ export const getAllProductsController = async (req: Request, res: Response) => {
 };
 
 export const createProductController = async (req: Request, res: Response) => {
-  console.log("Request body:", req.body);
-
-  const parsedRes = createProductSchema.safeParse(req.body);
-  if (!parsedRes.success) {
-    res.status(400).json({
-      message: "Invalid request body",
-    });
-    return;
-  }
+  const postBody = req.body;
 
   const newProduct = {
     id: products.length + 1,
-    name: parsedRes.data.name,
-    price: parsedRes.data.price,
+    name: postBody.name,
+    price: postBody.price,
   };
 
   products.push(newProduct);
